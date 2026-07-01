@@ -66,3 +66,58 @@ const productos = [
     }
 ]
 
+//2. Variables Gobales
+
+let categotiaActual = "todos";
+let busqueda ="";
+let productoActual = null;
+
+
+//3. Mostrar Productos
+
+function mostrar(){
+    const lista = document.getElementById("lista");
+    lista.innerHTML = "";
+
+    let resultado = [...productos];
+
+    //filtra por categoria
+    if (categoriaActual !== "todos") {
+        resultado = resuslta.filter(p => p. categoria === categoriaActual);
+    }
+
+    //filtrar por busqueda 
+    if (busqueda.trim() !== "") {
+        resultado = resultado.filter( p=>
+            p.nombre.toLowerCase().includes(busqueda.toLowerCase())
+        );
+    }
+
+    if (resultado.length === 0) {
+        lista.innerHTML = `
+        <div class="col-12 text-center">
+            <p>No se encontraron productos</p>
+        </div>
+        `;
+        return;
+    }
+    resultado.forEach(p => {
+        lista.innerHTML += `
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+                <img src="${p.imagen}" class="card-img-top" alt="${p.nombre}" loading="lazy">
+                <div class="card-body">
+                    <h4>${p.nombre}</h4>
+                    <p class="cat">${p.categoria}</p>
+                    <p class="precio">S/ ${p.precio.toFixed(2)}</p>
+                    <div class="acciones">
+                        <button class="btn-detalle" onclick="verDetalle(${p.id})" aria-label="Ver detalle de ${p.nombre}">Ver detalle</button>
+                        <button class="btn-agregar" onclick="agregar(${p.id})" aria-label="Agregar ${p.nombre} al carrito">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
+    });
+}
+
