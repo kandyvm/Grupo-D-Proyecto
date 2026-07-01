@@ -121,4 +121,17 @@ function mostrar() {
     });
 }
 
+// 4. filtro y busqueda
+function filtrar(cat, btn) {
+    categoriaActual = cat;
+    document.querySelectorAll(".btn-filtro").forEach(b => b.classList.remove("activo"));
+    if (btn) btn.classList.add("activo");
+    mostrar();
+}
+
+function buscar() {
+    busqueda = document.getElementById("buscar").value;
+    mostrar();
+}
+
 
