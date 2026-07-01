@@ -72,35 +72,35 @@ let categotiaActual = "todos";
 let busqueda ="";
 let productoActual = null;
 
+//3. Mostrar productos
 
-//3. Mostrar Productos
-
-function mostrar(){
+function mostrar() {
     const lista = document.getElementById("lista");
     lista.innerHTML = "";
-
+    
     let resultado = [...productos];
-
-    //filtra por categoria
+    
+    // Filtrar por categoría
     if (categoriaActual !== "todos") {
-        resultado = resuslta.filter(p => p. categoria === categoriaActual);
+        resultado = resultado.filter(p => p.categoria === categoriaActual);
     }
-
-    //filtrar por busqueda 
+    
+    // Filtrar por búsqueda
     if (busqueda.trim() !== "") {
-        resultado = resultado.filter( p=>
+        resultado = resultado.filter(p => 
             p.nombre.toLowerCase().includes(busqueda.toLowerCase())
         );
     }
-
+    
     if (resultado.length === 0) {
         lista.innerHTML = `
-        <div class="col-12 text-center">
-            <p>No se encontraron productos</p>
-        </div>
+            <div class="col-12 text-center">
+                <p>No se encontraron productos.</p>
+            </div>
         `;
         return;
     }
+    
     resultado.forEach(p => {
         lista.innerHTML += `
         <div class="col-md-6 col-lg-4">
@@ -120,4 +120,5 @@ function mostrar(){
         `;
     });
 }
+
 
