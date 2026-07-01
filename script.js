@@ -134,4 +134,40 @@ function buscar() {
     mostrar();
 }
 
+//5. Modal-Vista de detalle 
+function verDetalle(id) {
+    productoActual = productos.find(p => p.id === id);
+    if (!productoActual) return;
+    
+    document.getElementById("m-img").src = productoActual.imagen;
+    document.getElementById("m-img").alt = productoActual.nombre;
+    document.getElementById("m-nombre").textContent = productoActual.nombre;
+    document.getElementById("m-precio").textContent = "S/ " + productoActual.precio.toFixed(2);
+    document.getElementById("m-descripcion").textContent = productoActual.descripcion;
+    document.getElementById("modal").style.display = "block";
+    document.body.style.overflow = "hidden";
+}
+
+function cerrarModal() {
+    document.getElementById("modal").style.display = "none";
+    document.body.style.overflow = "auto";
+}
+
+function agregarModal() {
+    if (productoActual) {
+        agregar(productoActual.id);
+        cerrarModal();
+    }
+}
+
+// Cerrar modal al hacer clic fuera
+window.onclick = function(e) {
+    const modal = document.getElementById("modal");
+    if (e.target === modal) {
+        cerrarModal();
+    }
+};
+
+
+
 
